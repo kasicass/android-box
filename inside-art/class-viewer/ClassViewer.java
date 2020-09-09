@@ -4,25 +4,6 @@
 import java.io.*;
 
 class ClassViewer {
-    static class ClassFile {
-        public static int SIGNATURE = 0xCAFEBABE;
-
-        public int magic;
-        public short minor_version;
-        public short major_version;
-
-        public void read(DataInputStream input) throws IOException {
-            magic = input.readInt();
-            minor_version = input.readShort();
-            major_version = input.readShort();
-        }
-
-        public void printInfo() {
-            System.out.println("ClassFile:");
-            System.out.println("  version - " + major_version + "." + minor_version);
-        }
-    }
-
     public static void main(String[] args) {
         if (args.length < 1) {
             System.out.println("usage:");
@@ -35,7 +16,9 @@ class ClassViewer {
 
             // static nested class
             // https://docs.oracle.com/javase/tutorial/java/javaOO/nested.html
-            ClassViewer.ClassFile classFile = new ClassViewer.ClassFile();
+            // ClassViewer.ClassFile classFile = new ClassViewer.ClassFile();
+
+            ClassFile classFile = new ClassFile();
             classFile.read(input);
             if (classFile.magic != ClassFile.SIGNATURE) {
                 System.out.println("Invalid .class file: " + args[0]);

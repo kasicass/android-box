@@ -1,1 +1,1 @@
-javac -g ClassViewer.java
+javac -g ClassViewer.java ClassFile.java
